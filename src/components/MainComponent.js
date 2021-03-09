@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand } from 'reactstrap';
-import Directory from '../DirectoryComponents';
-import { CAMPSITES } from '../shared/campsites.js';
+import Directory from './DirectoryComponents';
+import CampsiteInfo from './CampsiteInfo';
+import { CAMPSITES } from '../shared/campsites';
 
 class Main extends Component {
     constructor(props) {
@@ -13,23 +14,22 @@ class Main extends Component {
     }
 
     onCampsiteSelect(campsiteId) {
-        this.setState({selectedCampsite: campsite});
+        this.setState({selectedCampsite: campsiteId});
     }
 
-  render() {
-      return (
-          <div className="Main">
-              <Navbar dark color="primary">
-              <div className="container">
-                  <NavbarBrand href="/">NuCamp</NavbarBrand>
-              </div>
-              </Navbar>
-              <Directory campsites={this.state.campsiteId} onClick={() => this.onCampsiteSelect(campsite)}/>
-              <CampsiteInfo campsite={this.state.selectedCampsite} />
-          </div>
-      );
-  }
+    render() {
+        return (
+            <div>
+                <Navbar dark color="primary">
+                    <div className="container">
+                        <NavbarBrand href="/">NuCamp</NavbarBrand>
+                    </div>
+                </Navbar>
+                <Directory campsites={this.state.campsites} onClick={campsiteId => this.onCampsiteSelect(campsiteId)}/>
+                <CampsiteInfo campsite={this.state.campsites.filter(campsite => campsite.id === this.state.selectedCampsite)[0]} />
+            </div>
+        );
+    };
 }
-
 
 export default Main;

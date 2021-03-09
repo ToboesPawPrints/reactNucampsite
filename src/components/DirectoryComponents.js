@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
-import CampsiteInfoComponent from './CampsiteInfo';
-import CampsiteInfo from "./CampsiteInfo.js";
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+
 
 
 class Directory extends Component {
