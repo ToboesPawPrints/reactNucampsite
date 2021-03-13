@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Footer(props) {
-    return(
+    return (
         <footer className="site-footer">
             <div className="container">
                 <div className="row">             
@@ -30,3 +30,5 @@ function Footer(props) {
         </footer>
     );
 }
+
+export default Footer;
