@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Directory from './DirectoryComponents';
 import CampsiteInfo from './CampsiteInfo';
 import Header from './HeaderComponent';
-import Footer from './FooterComponent'
+import Footer from './FooterComponent';
+import Home from './HomeComponent';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { CAMPSITES } from '../shared/campsites';
 
 class Main extends Component {
