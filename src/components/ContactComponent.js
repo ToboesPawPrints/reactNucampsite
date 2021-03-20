@@ -34,7 +34,7 @@ class Contact extends Component {
     }
 
     validate(firstName, lastName, phoneNum, email) {
-        const erorrs = {
+        const errors = {
             firstName: '',
             lastName: '',
             phoneNum: '',
@@ -43,30 +43,30 @@ class Contact extends Component {
 
         if (this.state.touched.firstName) {
             if(firstName.length < 2) {
-                erorrs.firstName = 'First name must be at least 2 characters.';
+                errors.firstName = 'First name must be at least 2 characters.';
             } else if(firstName.length > 15) {
-                erorrs.firstName = 'First name must be 15 or less characters';
+                errors.firstName = 'First name must be 15 or less characters';
             }
         }
 
         if (this.state.touched.lastName) {
             if(lastName.length < 2) {
-                erorrs.lastName = 'Last name must be at least 2 characters.';
+                errors.lastName = 'Last name must be at least 2 characters.';
             } else if(lastName.length > 15) {
-                erorrs.lastName = 'Last name must be 15 or less characters';
+                errors.lastName = 'Last name must be 15 or less characters';
             }
         }
 
         const reg = /^\d+$/;
         if (this.state.touched.phoneNum && !reg.test(phoneNum)) {
-            erorrs.phoneNum = 'The phone number should contain only numbers.';
+            errors.phoneNum = 'The phone number should contain only numbers.';
         }
 
         if (this.state.touched.email && !email.includes('@')) {
-            erorrs.email = 'Email should contain an @';
+            errors.email = 'Email should contain an @';
         }
 
-        return erorrs;
+        return errors;
 
     }
 
@@ -144,7 +144,7 @@ class Contact extends Component {
                                             placeholder="Last Name"
                                             value={this.state.lastName}
                                             invalid={errors.lastName}
-                                            onBlur={this.handleBlur("lasttName")}
+                                            onBlur={this.handleBlur("lastName")}
                                             onChange={this.handleInputChange} />
                                     <FormFeedback>{errors.lastName}</FormFeedback>
                                 </Col>                        
