@@ -1,6 +1,89 @@
 import React from 'react'
-import { Card ,CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem  } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button,
+Modal, ModalHeader, ModalBody, Label } from 'reactstrap';
+import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
+
+const required = val => val && val.length;
+const maxLength = len => val => !val || (val.length <= len);
+const minLength = len => val => val && (val.length >= len);
+
+    class CommentForm extends React.Component {
+
+        constructor(props) {
+            super(props);
+    
+            this.state = {
+              isModalOpen: false
+            };
+
+            this.toggleModal = this.toggleModal.bind(this);
+
+        }
+
+        handleSubmit(values) {
+            console.log("Current state is: " + JSON.stringify(values));
+            alert("Current state is: " + JSON.stringify(values));
+        }
+    
+    
+        toggleModal() {
+            this.setState({
+                isModalOpen: !this.state.isModalOpen
+            });
+        }
+
+        render() {
+            return (
+            <React.Fragment>
+             <Button type="submit" outline onClick={this.toggleModal}>
+                <i className="fa fa-pencil fa-lg" />
+                  Submit Comment
+                </Button>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalBody>
+                        <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                        <Label htmlFor="rating" md={2}>Rating</Label>
+                            <Control.select className="form-control" model=".rating">
+                                
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </Control.select>
+                            <Label htmlFor="author" md={2}>Author</Label>
+                            <Control.text className="form-control"  model=".author" id="author"
+                            validators={{
+                            required,
+                            minLength: minLength(2),
+                            maxLength: maxLength(15),
+                            }}>
+                            </Control.text>
+                            <Errors
+                        className="text-danger"
+                        model=".author"
+                        show="touched"
+                        component="div"
+                        messages={{
+                        required: 'Required',
+                        minLength: 'Must be at 2 characters',
+                         maxLength: 'Must be 15 characters or less',
+                             }}
+                             />
+                            <Label htmlFor="text" md={2}>Text</Label>
+                            <Control.textarea className="form-control"  model=".text">
+
+                            </Control.textarea>
+                            <Button type="submit">Submit</Button>
+                        </LocalForm>
+                    </ModalBody>
+                </Modal>
+            </React.Fragment>
+            )
+        }
+    }
 
     function RenderCampsite({campsite}) {
         return(
@@ -31,6 +114,7 @@ import { Link } from 'react-router-dom';
                             </div>
                         );
                     })}
+                    <CommentForm />
                 </div>
             );
         }

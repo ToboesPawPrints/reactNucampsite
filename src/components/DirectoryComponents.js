@@ -38,7 +38,7 @@ function Directory(props) {
                 </div>
             </div>
             <div className="row">
-                {directory}
+                {directory}  
             </div>
         </div>
     );
