@@ -12,6 +12,7 @@ export const addComment = (campsiteId, rating, author, text) => ({
 });
 
 export const fetchCampsites = () => dispatch => {
+    
     dispatch(campsitesLoading());
 
     setTimeout(() => {
@@ -28,7 +29,7 @@ export const campsitesFailed = errMess => ({
     payload: errMess
 });
 
-export const addCampsite = campsites => ({
+export const addCampsites = campsites => ({
     type: ActionTypes.ADD_CAMPSITES,
     payload: campsites
 });
