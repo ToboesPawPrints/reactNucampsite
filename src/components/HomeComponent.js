@@ -31,11 +31,13 @@ function Home(props) {
                     errMess={props.campsitesErrMess}
                     />
                 </div>
+                <div className="col-md m-1">
                 <RenderCard
                         item={props.promotion}
                         isLoading={props.promotionLoading}
                         errMess={props.promotionErrMess}
                     />
+                    </div>
                 <div className="col-md m-1">
                     <RenderCard item={props.partner} />
                 </div>
